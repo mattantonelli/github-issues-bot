@@ -37,8 +37,11 @@ module IssuesBot
 
       def self.find(url, issue)
         response = Github::Client.query(QUERY, variables: { url: URI(url), issue: issue })
-        if errors = response.errors.any?
-          errors.each { |error| Discordrb::LOGGER.error(error)}
+        errors = response.original_hash['errors']
+
+        if errors.any?
+          errors.each { |error| Discordrb::LOGGER.error(error['message'])}
+          nil
         else
           response.data.resource.issue_or_pull_request.url
         end

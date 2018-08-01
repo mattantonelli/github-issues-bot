@@ -13,11 +13,11 @@ module IssuesBot
 
   bot.message(contains: 'GH#') do |event|
     next unless url = CONFIG.repositories[event.server.id]
+
     issues = event.message.content.scan(/GH#(\d+)/).flatten.map(&:to_i)
+    issue_urls = issues.map { |issue| Github::Issues.find(url, issue) }.compact
 
-    issue_urls = issues.map { |issue| Github::Issues.find(url, issue) }
-
-    event.message.reply(issue_urls.join("\n"))
+    event.message.reply(issue_urls.join("\n")) if issue_urls.any?
   end
 
   logfile = File.open('log.txt', 'a')
