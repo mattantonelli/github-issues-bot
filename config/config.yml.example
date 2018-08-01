@@ -1,0 +1,21 @@
+# Bot client ID
+client_id: 123
+
+# Bot token
+token: 'AbC.123'
+
+# GitHub personal access token
+#
+# https://github.com/settings/tokens
+# Public scope:  repo > public_repo
+# Private scope: repo
+#
+github_token: 'def456'
+
+# Tracked repositories by server (one repo per server)
+#
+# server_id: 'url'
+#
+repositories:
+  12345: 'https://github.com/user/repo'
+  67890: 'https://github.com/user/another-repo'
