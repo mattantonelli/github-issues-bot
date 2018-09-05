@@ -17,6 +17,45 @@ module IssuesBot
     Schema = GraphQL::Client.load_schema(HttpAdapter)
     Client = GraphQL::Client.new(schema: Schema, execute: HttpAdapter)
 
+    class Info
+      QUERY = Github::Client.parse <<-GRAPHQL
+        query($url: URI!) {
+          resource(url: $url) {
+            ... on Repository {
+              name
+              description
+              pushedAt
+              watchers {
+                totalCount
+              }
+              stargazers {
+                totalCount
+              }
+              forks {
+                totalCount
+              }
+              openIssues: issues(states: OPEN) {
+                totalCount
+              }
+              closedIssues: issues(states: CLOSED) {
+                totalCount
+              }
+              openPullRequests: pullRequests(states: OPEN) {
+                totalCount
+              }
+              mergedPullRequests: pullRequests(states: MERGED) {
+                totalCount
+              }
+            }
+          }
+        }
+      GRAPHQL
+
+      def self.find(url)
+        Github::Client.query(QUERY, variables: { url: URI(url) }).data.resource
+      end
+    end
+
     class Issues
       QUERY = Github::Client.parse <<-GRAPHQL
         query($url:URI!, $issue:Int!) {
