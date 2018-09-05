@@ -31,7 +31,11 @@ This bot requires the following permissions:
 This bot is set up for [Capistrano](https://github.com/capistrano/capistrano) deployment. The deployment strategy is dependent on `rbenv` and `screen`. You can configure it to deploy to your own server by updating `config/deploy.rb` and `config/deploy/production.rb` appropriately.
 
 ## Usage
+### Commands
+#### Info
+![Example](https://i.imgur.com/HuTMntI.png)
 
+### Issue/Pull Request Lookup
 To look up an issue or pull request, just reference the issue # with the prefix `GH#`. For example:
 
 ```
@@ -41,5 +45,4 @@ Did you see GH#422?
 The bot will then look up the URL configured for your server and use it to look up the issue/pull request.
 
 ## Example
-
 ![Example](https://i.imgur.com/RKXBC1k.png)
