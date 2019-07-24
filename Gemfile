@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 ruby '2.4.1'
 
 gem 'discordrb', git: 'https://github.com/meew0/discordrb'
-gem 'graphql-client'
+gem 'graphql-client', '~> 0.14.0'
 
 group :development do
   gem 'capistrano', '3.10.2'
