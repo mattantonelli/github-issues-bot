@@ -36,7 +36,7 @@ GEM
     domain_name (0.5.20170404)
       unf (>= 0.0.5, < 1.0.0)
     event_emitter (0.2.6)
-    ffi (1.9.18)
+    ffi (1.11.1)
     graphql (1.9.7)
     graphql-client (0.14.0)
       activesupport (>= 3.0, < 6.0)
